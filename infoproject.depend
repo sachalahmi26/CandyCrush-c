@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1764359006 source:c:\users\sacha\onedrive\documents\projet info\infoproject\infoproject.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
