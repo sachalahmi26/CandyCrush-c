@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-//Définir la taille du tableau
+//DÃ©finir la taille du tableau
 #define N 25
 #define P 45
 
 //Sous programme qui affiche le menu
-int affichermenu(char tab[N][P], void remplir(tab), void affichergrille(tab)){
+int affichermenu(){
     int choix;
     printf("1. Lire les regles du jeu\n");
-    printf("2. Commencer une nouvelle partie (à partir du 1er niveau)\n");
+    printf("2. Commencer une nouvelle partie (Ã  partir du 1er niveau)\n");
     printf("3. Reprendre une partie (au dernier niveau enregistre)\n");
     printf("4. Quitter\n");
     printf("Votre choix : ");
@@ -26,9 +26,6 @@ int affichermenu(char tab[N][P], void remplir(tab), void affichergrille(tab)){
         srand(time(NULL));
         int nb_vies = rand()%21;
         printf("Nombre de vies : %d", nb_vies);
-        srand(time(NULL));
-        remplir(tab);
-        affichergrille(tab);
     }
     else if(choix==4){
         printf("Vous avez quitte\n");
@@ -63,6 +60,8 @@ void affichergrille(char tab[N][P]){
 
 int main(){
     char tab[N][P];
-    affichermenu(tab, void remplir(tab), void affichergrille(char tab[N][P]);
+    srand(time(NULL));
+    remplir(tab);
+    affichergrille(tab);
     return 0;
 }
