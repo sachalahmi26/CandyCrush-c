@@ -39,7 +39,7 @@ int affichermenu(){
 
 //Sous programme qui remplit le tableau par des items
 void remplir(char tab[N][P]){
-    char items[]={'-','+','#','$','@'};
+    char items[]={'O','X','#','$','*'};
     int nbItems=5;
     for(int i=0;i<N;i++){
         for(int j=0;j<P;j++){
