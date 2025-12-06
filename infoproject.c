@@ -27,7 +27,7 @@ void affichergrille(char tab[N][P]){
 }
 
 //Sous programme qui efface les items
-void effacer(char tab[N][P]){
+void effacer(char tab[N][P], int nbpoints){
     int aEffacer[N][P] = {0};
     for(int i=0;i<N;i++){
         for(int j=0;j<P-2;j++){
@@ -40,6 +40,7 @@ void effacer(char tab[N][P]){
                 aEffacer[i][j+1] = 1;
                 aEffacer[i][j+2] = 1;
                 aEffacer[i][j+3] = 1;
+                nbpoints = nbpoints + 800;
             }
         }
     }
@@ -54,6 +55,7 @@ void effacer(char tab[N][P]){
                 aEffacer[i+1][j] = 1;
                 aEffacer[i+2][j] = 1;
                 aEffacer[i+3][j] = 1;
+                nbpoints = nbpoints + 800;
             }
         }
     }
@@ -64,6 +66,9 @@ void effacer(char tab[N][P]){
             }
         }
     }
+    printf("\n");
+    printf("Nombre de points : %d\n", nbpoints);
+    printf("\n");
 }
 
 void gravite(char tab[N][P]) {
@@ -89,6 +94,7 @@ void gravite(char tab[N][P]) {
 
 int main(){
     int choix;
+    int nbpoints=0;
     char tab[N][P];
     printf("1. Lire les regles du jeu\n");
     printf("2. Commencer une nouvelle partie (A partir du 1er niveau)\n");
@@ -112,7 +118,7 @@ int main(){
         remplir(tab);
         affichergrille(tab);
         printf("\n");
-        effacer(tab);
+        effacer(tab, nbpoints);
         gravite(tab);
         affichergrille(tab);
         return 0;
