@@ -62,7 +62,7 @@ void effacer(char tab[N][P], int nbpoints){
         }
     }
     printf("\n");
-    printf("Nombre de points : %d\n", nbpoints);
+    printf("Nombre de points : %d\n", &nbpoints);
     printf("\n");
 }
 
