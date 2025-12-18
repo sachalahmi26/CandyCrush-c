@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-//Définir la taille du tableau
-#define N 25
-#define P 45
+#include "infoproject.h"
 
 //Sous programme qui remplit le tableau par des items
 void remplir(char tab[N][P]){
@@ -26,7 +21,7 @@ void affichergrille(char tab[N][P]){
     }
 }
 
-//Sous programme qui efface les items
+//Sous programme qui efface les items et compte les points
 void effacer(char tab[N][P], int nbpoints){
     int aEffacer[N][P] = {0};
     for(int i=0;i<N;i++){
@@ -71,6 +66,7 @@ void effacer(char tab[N][P], int nbpoints){
     printf("\n");
 }
 
+//Fonction qui qui fait tomber et réapparaître les items
 void gravite(char tab[N][P]) {
     for (int j = 0; j < P; j++) {
         int bas = N - 1;
@@ -92,9 +88,21 @@ void gravite(char tab[N][P]) {
     }
 }
 
+//Sous progamme qui inverse deux cases
+char inverser(char tab[N][P], int i, int j, int k, int l){
+    char temp = tab[k][l];
+    tab[k][l] = tab[i][j];
+    tab[i][j] = temp;
+}
+
+
+//Programme principale qui affiche le menu, les options, déclare les variables, et execute les sous programmes
 int main(){
     int choix;
     int nbpoints=0;
+    int i, j, k, l;
+    int duree = 120;
+    time_t debut = time(NULL);
     char tab[N][P];
     printf("1. Lire les regles du jeu\n");
     printf("2. Commencer une nouvelle partie (A partir du 1er niveau)\n");
@@ -117,10 +125,27 @@ int main(){
         srand(time(NULL));
         remplir(tab);
         affichergrille(tab);
-        printf("\n");
         effacer(tab, nbpoints);
         gravite(tab);
         affichergrille(tab);
+        printf("Saisir la ligne et la colonne de la premiere case : ");
+        scanf("%d %d", &i, &j);
+        printf("Saisir la ligne et la colonne de la deuxieme case : ");
+        scanf("%d %d", &k, &l);
+        while (difftime(time(NULL), debut) < duree){
+        if((i==k&&(j==l-1||j==l+1))||(j==l&&(i==k-1||i==k+1))){
+            inverser(tab, i, j, k, l);
+            printf("\nTableau par inversions\n");
+            affichergrille(tab);
+            effacer(tab, nbpoints);
+            gravite(tab);
+            affichergrille(tab);
+            return 0;
+        }
+        else{
+            printf("Erreur");
+        }
+        }
         return 0;
     }
     else if(choix==4){
