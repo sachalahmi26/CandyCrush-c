@@ -11,14 +11,27 @@ void remplir(char tab[N][P]){
     }
 }
 
-//Sous programme qui affiche les valeurs du tableau
-void affichergrille(char tab[N][P]){
-    for(int i=0;i<N;i++){
-        for(int j=0;j<P;j++){
-            printf("%c ", tab[i][j]);
+// Sous-programme pour afficher la grille avec des couleurs
+void afficherGrilleCouleur(char tab[N][P]) {
+    printf("\n    ");
+    for(int j=0; j<P; j++) printf("%d ", j); // Affiche numéros colonnes
+    printf("\n   %s\n", "---------------------");
+
+    for (int i = 0; i < N; i++) {
+        printf("%d | ", i); // Affiche numéros lignes
+        for (int j = 0; j < P; j++) {
+            switch (tab[i][j]) {
+                case 'O': printf("\033[1;31mO \033[0m"); break; // Rouge
+                case 'X': printf("\033[1;34mX \033[0m"); break; // Bleu
+                case '#': printf("\033[1;32m# \033[0m"); break; // Vert
+                case '$': printf("\033[1;33m$ \033[0m"); break; // Jaune
+                case '*': printf("\033[1;35m* \033[0m"); break; // Magenta
+                default:  printf("  "); break;
+            }
         }
         printf("\n");
     }
+    printf("\n");
 }
 
 //Sous programme qui efface les items et compte les points
